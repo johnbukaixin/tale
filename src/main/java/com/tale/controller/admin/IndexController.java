@@ -55,12 +55,12 @@ public class IndexController extends BaseController {
      */
     @Route(value = {"/", "index"}, method = HttpMethod.GET)
     public String index(Request request) {
-        List<Comments> comments   = siteService.recentComments(5);
-        List<Contents> contents   = siteService.getContens(Types.RECENT_ARTICLE, 5);
-        Statistics     statistics = siteService.getStatistics();
+        List<Comments> comments = siteService.recentComments(5);
+        List<Contents> contents = siteService.getContens(Types.RECENT_ARTICLE, 5);
+        Statistics statistics = siteService.getStatistics();
         // 取最新的20条日志
         Page<Logs> logsPage = new Logs().page(1, 20);
-        List<Logs> logs     = logsPage.getRows();
+        List<Logs> logs = logsPage.getRows();
 
         request.attribute("comments", comments);
         request.attribute("articles", contents);
@@ -149,8 +149,8 @@ public class IndexController extends BaseController {
         }
 
         try {
-            Users  temp = new Users();
-            String pwd  = EncryptKit.md5(users.getUsername() + password);
+            Users temp = new Users();
+            String pwd = EncryptKit.md5(users.getUsername() + password);
             temp.setPassword(pwd);
             temp.update(users.getUid());
             new Logs(LogActions.UP_PWD, null, request.address(), this.getUid()).save();
@@ -254,7 +254,7 @@ public class IndexController extends BaseController {
         try {
             // sh tale.sh reload 10
             String webHome = new File(AttachController.CLASSPATH).getParent();
-            String cmd     = "sh " + webHome + "/bin tale.sh reload " + sleep;
+            String cmd = "sh " + webHome + "/bin tale.sh reload " + sleep;
             log.info("execute shell: {}", cmd);
             ShellUtils.shell(cmd);
             new Logs(LogActions.RELOAD_SYS, "", request.address(), this.getUid()).save();

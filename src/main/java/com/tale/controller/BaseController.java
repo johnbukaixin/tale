@@ -33,7 +33,7 @@ public abstract class BaseController {
         return TaleUtils.getLoginUser();
     }
 
-    public Integer getUid(){
+    public Integer getUid() {
         return this.user().getUid();
     }
 

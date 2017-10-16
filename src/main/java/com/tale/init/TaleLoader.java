@@ -29,7 +29,7 @@ public final class TaleLoader {
 
     public static void loadThemes() {
         String themeDir = AttachController.CLASSPATH + "templates" + File.separatorChar + "themes";
-        File[] dir      = new File(themeDir).listFiles();
+        File[] dir = new File(themeDir).listFiles();
         for (File f : dir) {
             if (f.isDirectory() && Files.isDirectory(Paths.get(f.getPath() + "/static"))) {
                 String themePath = "/templates/themes/" + f.getName();
@@ -61,7 +61,7 @@ public final class TaleLoader {
         try {
             if (pluginFile.isFile() && pluginFile.getName().endsWith(".jar")) {
                 URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-                Method         add         = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
+                Method add = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
                 add.setAccessible(true);
                 add.invoke(classLoader, pluginFile.toURI().toURL());
 

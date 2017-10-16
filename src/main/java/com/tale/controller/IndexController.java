@@ -235,7 +235,7 @@ public class IndexController extends BaseController {
             return RestResponse.fail("非法评论来源");
         }
 
-        String  val   = request.address() + ":" + comments.getCid();
+        String val = request.address() + ":" + comments.getCid();
         Integer count = cache.hget(Types.COMMENTS_FREQUENCY, val);
         if (null != count && count > 0) {
             return RestResponse.fail("您发表评论太快了，请过会再试");

@@ -59,7 +59,7 @@ public class AttachController extends BaseController {
     public String index(Request request, @Param(defaultValue = "1") int page,
                         @Param(defaultValue = "12") int limit) {
 
-        Attach       attach     = new Attach();
+        Attach attach = new Attach();
         Page<Attach> attachPage = attach.page(page, limit);
         request.attribute("attachs", attachPage);
         request.attribute(Types.ATTACH_URL, Commons.site_option(Types.ATTACH_URL, Commons.site_url()));
@@ -81,12 +81,12 @@ public class AttachController extends BaseController {
 
         log.info("UPLOAD DIR = {}", TaleUtils.upDir);
 
-        Users                 users       = this.user();
-        Integer               uid         = users.getUid();
+        Users users = this.user();
+        Integer uid = users.getUid();
         Map<String, FileItem> fileItemMap = request.fileItems();
-        Collection<FileItem>  fileItems   = fileItemMap.values();
-        List<Attach>          errorFiles  = new ArrayList<>();
-        List<Attach>          urls        = new ArrayList<>();
+        Collection<FileItem> fileItems = fileItemMap.values();
+        List<Attach> errorFiles = new ArrayList<>();
+        List<Attach> urls = new ArrayList<>();
         try {
             fileItems.forEach((FileItem f) -> {
                 String fname = f.getFileName();
@@ -94,7 +94,7 @@ public class AttachController extends BaseController {
                 if ((f.getLength() / 1024) <= TaleConst.MAX_FILE_SIZE) {
                     String fkey = TaleUtils.getFileKey(fname);
 
-                    String ftype    = f.getContentType().contains("image") ? Types.IMAGE : Types.FILE;
+                    String ftype = f.getContentType().contains("image") ? Types.IMAGE : Types.FILE;
                     String filePath = TaleUtils.upDir + fkey;
 
                     try {
@@ -139,7 +139,7 @@ public class AttachController extends BaseController {
     public RestResponse delete(@Param Integer id, Request request) {
         try {
             Attach attach = new Attach();
-            Attach temp   = attach.find(id);
+            Attach temp = attach.find(id);
             if (null == temp) {
                 return RestResponse.fail("不存在该附件");
             }

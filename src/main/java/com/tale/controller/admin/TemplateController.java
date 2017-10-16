@@ -71,8 +71,8 @@ public class TemplateController extends BaseController {
     public void getContent(@Param String fileName, Response response) {
         try {
             String themePath = Const.CLASSPATH + File.separatorChar + "templates" + File.separatorChar + "themes" + File.separatorChar + Commons.site_theme();
-            String filePath  = themePath + File.separatorChar + fileName;
-            String content   = Files.readAllLines(Paths.get(filePath)).stream().collect(Collectors.joining("\n"));
+            String filePath = themePath + File.separatorChar + fileName;
+            String content = Files.readAllLines(Paths.get(filePath)).stream().collect(Collectors.joining("\n"));
             response.text(content);
         } catch (IOException e) {
             log.error("获取模板文件失败", e);
@@ -86,7 +86,7 @@ public class TemplateController extends BaseController {
             return RestResponse.fail("缺少参数，请重试");
         }
         String themePath = Const.CLASSPATH + File.separatorChar + "templates" + File.separatorChar + "themes" + File.separatorChar + Commons.site_theme();
-        String filePath  = themePath + File.separatorChar + fileName;
+        String filePath = themePath + File.separatorChar + fileName;
         try {
             if (Files.exists(Paths.get(filePath))) {
                 byte[] rf_wiki_byte = content.getBytes("UTF-8");

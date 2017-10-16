@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * 分类管理
- *
+ * <p>
  * Created by biezhi on 2017/2/21.
  */
 @Slf4j
@@ -36,8 +36,8 @@ public class CategoryController extends BaseController {
 
     @Route(value = "", method = HttpMethod.GET)
     public String index(Request request) {
-        List<Metas>   categories = siteService.getMetas(Types.RECENT_META, Types.CATEGORY, TaleConst.MAX_POSTS);
-        List<Metas> tags       = siteService.getMetas(Types.RECENT_META, Types.TAG, TaleConst.MAX_POSTS);
+        List<Metas> categories = siteService.getMetas(Types.RECENT_META, Types.CATEGORY, TaleConst.MAX_POSTS);
+        List<Metas> tags = siteService.getMetas(Types.RECENT_META, Types.TAG, TaleConst.MAX_POSTS);
         request.attribute("categories", categories);
         request.attribute("tags", tags);
         return "admin/category";

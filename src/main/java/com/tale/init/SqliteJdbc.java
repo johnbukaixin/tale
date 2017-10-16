@@ -53,16 +53,16 @@ public final class SqliteJdbc {
             log.info("load sqlite database path [{}]", DB_PATH);
             log.info("load sqlite database src [{}]", DB_SRC);
 
-            Connection con       = DriverManager.getConnection(DB_SRC);
-            Statement  statement = con.createStatement();
-            ResultSet  rs        = statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='t_options'");
-            int        count     = rs.getInt(1);
+            Connection con = DriverManager.getConnection(DB_SRC);
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='t_options'");
+            int count = rs.getInt(1);
             if (count == 0) {
-                String            cp  = SqliteJdbc.class.getClassLoader().getResource("").getPath();
+                String cp = SqliteJdbc.class.getClassLoader().getResource("").getPath();
                 InputStreamReader isr = new InputStreamReader(new FileInputStream(cp + "schema.sql"), "UTF-8");
 
                 String sql = new BufferedReader(isr).lines().collect(Collectors.joining("\n"));
-                int    r   = statement.executeUpdate(sql);
+                int r = statement.executeUpdate(sql);
                 log.info("initialize import database - {}", r);
             }
             rs.close();

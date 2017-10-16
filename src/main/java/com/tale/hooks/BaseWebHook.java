@@ -29,7 +29,7 @@ public class BaseWebHook implements WebHook {
         String ip = request.address();
 
         // 禁止该ip访问
-        if(TaleConst.BLOCK_IPS.contains(ip)){
+        if (TaleConst.BLOCK_IPS.contains(ip)) {
             response.text("You have been banned, brother");
             return false;
         }
@@ -56,8 +56,8 @@ public class BaseWebHook implements WebHook {
                 }
             }
 
-            if(uri.startsWith("/admin") && !uri.startsWith("/admin/login")){
-                if(null == user){
+            if (uri.startsWith("/admin") && !uri.startsWith("/admin/login")) {
+                if (null == user) {
                     response.redirect("/admin/login");
                     return false;
                 }
@@ -65,7 +65,7 @@ public class BaseWebHook implements WebHook {
             }
         }
         String method = request.method();
-        if(method.equals("GET")){
+        if (method.equals("GET")) {
             String csrf_token = UUID.UU64();
             // 默认存储20分钟
             int timeout = TaleConst.BCONF.getInt("app.csrf-token-timeout", 20) * 60;
@@ -79,7 +79,7 @@ public class BaseWebHook implements WebHook {
     public boolean after(Signature signature) {
         Request request = signature.request();
         String _csrf_token = request.attribute("del_csrf_token");
-        if(StringKit.isNotBlank(_csrf_token)){
+        if (StringKit.isNotBlank(_csrf_token)) {
             // 移除本次token
             cache.hdel(Types.CSRF_TOKEN, _csrf_token);
         }

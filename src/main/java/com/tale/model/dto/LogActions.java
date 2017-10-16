@@ -2,7 +2,7 @@ package com.tale.model.dto;
 
 /**
  * 日志操作常量
- *
+ * <p>
  * Created by biezhi on 2017/2/26.
  */
 public interface LogActions {

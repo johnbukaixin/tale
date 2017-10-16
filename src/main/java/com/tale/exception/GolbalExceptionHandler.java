@@ -20,7 +20,7 @@ public class GolbalExceptionHandler extends DefaultExceptionHandler {
     public void handle(Exception e) {
         if (e instanceof ValidateException) {
             ValidateException validateException = (ValidateException) e;
-            String            msg               = validateException.getErrMsg();
+            String msg = validateException.getErrMsg();
             WebContext.response().json(RestResponse.fail(msg));
         } else {
             super.handle(e);

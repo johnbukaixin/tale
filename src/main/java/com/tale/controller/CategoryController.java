@@ -42,8 +42,8 @@ public class CategoryController extends BaseController {
      */
     @GetRoute(value = {"categories", "categories.html"})
     public String categories(Request request) {
-        Map<String, List<Contents>> mapping    = metasService.getMetaMapping(Types.CATEGORY);
-        Set<String>                 categories = mapping.keySet();
+        Map<String, List<Contents>> mapping = metasService.getMetaMapping(Types.CATEGORY);
+        Set<String> categories = mapping.keySet();
         request.attribute("categories", categories);
         request.attribute("mapping", mapping);
         return this.render("categories");
@@ -90,7 +90,7 @@ public class CategoryController extends BaseController {
     @GetRoute(value = {"tags", "tags.html"})
     public String tags(Request request) {
         Map<String, List<Contents>> mapping = metasService.getMetaMapping(Types.TAG);
-        Set<String>                 tags    = mapping.keySet();
+        Set<String> tags = mapping.keySet();
         request.attribute("tags", tags);
         request.attribute("mapping", mapping);
         return this.render("tags");

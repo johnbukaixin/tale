@@ -252,10 +252,10 @@ public final class Commons {
     public static String show_thumb(String content) {
         content = TaleUtils.mdToHtml(content);
         if (content.contains("<img")) {
-            String  img       = "";
-            String  regEx_img = "<img.*src\\s*=\\s*(.*?)[^>]*?>";
-            Pattern p_image   = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
-            Matcher m_image   = p_image.matcher(content);
+            String img = "";
+            String regEx_img = "<img.*src\\s*=\\s*(.*?)[^>]*?>";
+            Pattern p_image = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
+            Matcher m_image = p_image.matcher(content);
             if (m_image.find()) {
                 img = img + "," + m_image.group();
                 // //匹配src

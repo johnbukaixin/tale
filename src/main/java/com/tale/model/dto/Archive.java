@@ -15,9 +15,9 @@ import java.util.List;
 @Data
 public class Archive extends ActiveRecord {
 
-    private String         date_str;
-    private Date           date;
-    private String         count;
+    private String date_str;
+    private Date date;
+    private String count;
     private List<Contents> articles;
 
 }
